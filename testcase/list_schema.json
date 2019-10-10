@@ -1,0 +1,143 @@
+  1 {
+  2   "definitions": {},
+  3   "$schema": "http://json-schema.org/draft-07/schema#",
+  4   "$id": "http://example.com/root.json",
+  5   "type": "object",
+  6   "title": "The Root Schema",
+  7   "required": [
+  8     "data",
+  9     "error_code",
+ 10     "error_description"
+ 11   ],
+ 12   "properties": {
+ 13     "data": {
+ 14       "$id": "#/properties/data",
+ 15       "type": "object",
+ 16       "title": "The Data Schema",
+ 17       "required": [
+ 18         "pid",
+ 19         "category",
+ 20         "stocks"
+ 21       ],
+ 22       "properties": {
+ 23         "pid": {
+ 24           "$id": "#/properties/data/properties/pid",
+ 25           "type": "integer",
+ 26           "title": "The Pid Schema",
+ 27           "default": 0,
+ 28           "examples": [
+ 29             -1
+ 30           ]
+ 31         },
+ 32         "category": {
+ 33           "$id": "#/properties/data/properties/category",
+ 34           "type": "integer",
+ 35           "title": "The Category Schema",
+ 36           "default": 0,
+ 37           "examples": [
+ 38             1
+ 39           ]
+ 40         },
+ 41         "stocks": {
+ 42           "$id": "#/properties/data/properties/stocks",
+ 43           "type": "array",
+ 44           "title": "The Stocks Schema",
+ 45           "items": {
+ 46             "$id": "#/properties/data/properties/stocks/items",
+ 47             "type": "object",
+ 48             "title": "The Items Schema",
+ 49             "required": [
+ 50               "symbol",
+ 51               "name",
+ 52               "type",
+ 53               "remark",
+ 54               "exchange",
+ 55               "created"
+ 56             ],
+ 57             "properties": {
+ 58               "symbol": {
+ 59                 "$id": "#/properties/data/properties/stocks/items/properties/symbol",
+ 60                 "type": "string",
+ 61                 "title": "The Symbol Schema",
+ 62                 "default": "",
+ 63                 "examples": [
+ 64                   "SH600036"
+ 65                 ],
+ 66                 "pattern": "^(.*)$"
+ 67               },
+ 68               "name": {
+ 69                 "$id": "#/properties/data/properties/stocks/items/properties/name",
+ 70                 "type": "string",
+ 71                 "title": "The Name Schema",
+ 72                 "default": "",
+ 73                 "examples": [
+ 74                   "招商银行"
+ 75                 ],
+ 76                 "pattern": "^(.*)$"
+ 77               },
+ 78               "type": {
+ 79                 "$id": "#/properties/data/properties/stocks/items/properties/type",
+ 80                 "type": "integer",
+ 81                 "title": "The Type Schema",
+ 82                 "default": 0,
+ 83                 "examples": [
+ 84                   11
+ 85                 ],
+ 86                 "minimum": 1.0,
+ 87                 "maximum": 100.0
+ 88               },
+ 89               "remark": {
+ 90                 "$id": "#/properties/data/properties/stocks/items/properties/remark",
+ 91                 "type": "string",
+ 92                 "title": "The Remark Schema",
+ 93                 "default": "",
+ 94                 "examples": [
+ 95                   ""
+ 96                 ],
+ 97                 "pattern": "^(.*)$"
+ 98               },
+ 99               "exchange": {
+100                 "$id": "#/properties/data/properties/stocks/items/properties/exchange",
+101                 "type": "string",
+102                 "title": "The Exchange Schema",
+103                 "default": "",
+104                 "examples": [
+105                   "SH"
+106                 ],
+107                 "pattern": "^(.*)$"
+108               },
+109               "created": {
+110                 "$id": "#/properties/data/properties/stocks/items/properties/created",
+111                 "type": "integer",
+112                 "title": "The Created Schema",
+113                 "default": 0,
+114                 "examples": [
+115                   1559526898858
+116                 ]
+117               }
+118             }
+119           }
+120         }
+121       }
+122     },
+123     "error_code": {
+124       "$id": "#/properties/error_code",
+125       "type": "integer",
+126       "title": "The Error_code Schema",
+127       "default": 0,
+128       "examples": [
+129         0
+130       ]
+131     },
+132     "error_description": {
+133       "$id": "#/properties/error_description",
+134       "type": "string",
+135       "title": "The Error_description Schema",
+136       "default": "",
+137       "examples": [
+138         ""
+139       ],
+140       "pattern": "^(.*)$"
+141     }
+142   }
+143 }
