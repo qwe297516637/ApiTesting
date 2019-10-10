@@ -6,19 +6,12 @@ import requests
 from weixin.contact.token import Weixin
 import logging
 
+from weixin.contact.utiks import Utils
+
 
 class TestDepartment:
-    @classmethod
-    def setup_class(cls):
-        print("setup class")
-        Weixin.get_token()
-        print(Weixin._token)
-
-    def setup(self):
-        print("setup")
-
     # 递归层级新建5 个部门
-    def test_create_depth(self):
+    def test_create_depth(self, token):
         parentid = 1
         for i in range(5):
             # 每个部门后面增加时间戳来辨识
@@ -27,7 +20,7 @@ class TestDepartment:
                 "parentid": parentid,
             }
             r = requests.post("https://qyapi.weixin.qq.com/cgi-bin/department/create",
-                              params={"access_token": Weixin.get_token()},
+                              params={"access_token": token},
                               json=data
                               ).json()
             logging.debug(r)
@@ -40,22 +33,22 @@ class TestDepartment:
         "東京アニメ研究所",
         "서울연구소"
     ])
-    def test_create_order(self, name):
+    def test_create_order(self, name, token):
         data = {
-            "name": name,
+            "name": name+Utils.udid(),
             "parentid": 1,
             "order": 1,
         }
 
         r=requests.post("https://qyapi.weixin.qq.com/cgi-bin/department/create",
-                        params={"access_token": Weixin.get_token()},
+                        params={"access_token": token},
                         json=data
                         ).json()
         logging.debug(r)
         assert r["errcode"] == 0
 
-    def test_get(self):
+    def test_get(self, token):
         r=requests.get("https://qyapi.weixin.qq.com/cgi-bin/department/list",
-                       params={"access_token": Weixin.get_token()},
+                       params={"access_token": token},
                        ).json()
         logging.info(json.dumps(r, indent=2))
